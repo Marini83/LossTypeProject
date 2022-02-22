@@ -1,0 +1,39 @@
+﻿@page "/user/add"
+@page "/user/edit/{usrID:int}"
+@inherits AddEditUserBase
+
+<h1>@Title User</h1>
+<hr />
+
+<EditForm Model="@usr" OnValidSubmit="SaveUser">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="Name" class="form-label">User Name</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="usr.UserName" />
+        </div>
+        <ValidationMessage For="@(() => usr.UserName)" />
+    </div>
+    <div class="mb-3">
+        <label for="Status" class="form-label">Active</label>
+        <div class="col-md-4">
+            <InputSelect class="form-control" @bind-Value="usr.Active">
+                <option value="">-- Select Status --</option>
+                <option value="True">Active</option>
+                <option value="False">Inactive</option>
+            </InputSelect>
+        </div>
+        <ValidationMessage For="@(() => usr.Active)" />
+    </div>
+    <div class="mb-3">
+        <label for="Department" class="form-label">Display Name</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="usr.DisplayName" />
+        </div>
+        <ValidationMessage For="@(() => usr.DisplayName)" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary"  @onclick="(async () => await SaveUser())">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>

@@ -1,0 +1,29 @@
+﻿@page "/lossType/add"
+@page "/lossType/edit/{lossTypeID:int}"
+@inherits AddEditLossTypeBase
+
+<h1>@Title Loss Type</h1>
+<hr />
+
+<EditForm Model="@lossType" OnValidSubmit="SaveLossType">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="Name" class="form-label">Loss Type Code</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="lossType.LossTypeCode" />
+        </div>
+        <ValidationMessage For="@(() => lossType.LossTypeCode)" />
+    </div>
+    
+    <div class="mb-3">
+        <label for="Department" class="form-label">Loss Type Description</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="lossType.LossTypeDescription" />
+        </div>
+        <ValidationMessage For="@(() => lossType.LossTypeDescription)" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button class="btn btn-light" @onclick="Cancel">Cancel</button>
+    </div>
+</EditForm>
